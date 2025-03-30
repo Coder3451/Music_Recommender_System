@@ -2,3 +2,4 @@ flask
 gunicorn
 psycopg2
 Flask-Dance==5.0.0
+python-dotenv
