@@ -5,7 +5,7 @@ from flask import Flask, jsonify, send_from_directory
 app = Flask(__name__)
 
 # Get PostgreSQL connection URL from environment variables
-DATABASE_URL = os.getenv("postgresql://music_recommender_o0zp_user:sVbjARLo55odMpWNWIQZXfIdQyzaETY1@dpg-cvkan8s9c44c738pbmf0-a/music_recommender_o0zp")
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 def get_db_connection():
     conn = psycopg2.connect(DATABASE_URL)
