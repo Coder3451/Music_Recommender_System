@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Music Recommender</title>
+	</head>
+	<body>
+		<h1> Music Recommendations</h1>
+		<ul id="recommendations"></ul>
+	<script>
+		fetch('/api/music')
+	.then(reponse => response.json())
+	.then(data => {
+		const list = document.getElementById('recommendations');
+		data.forEach(item => {
+			const li = document.createElement('li');
+			li.textContent = `${item.track} by ${item.artist}`;
+			list.appendchild(li);
+		});
+	});
+	</script>
+	</body>
+</html>
