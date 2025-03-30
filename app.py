@@ -1,24 +1,24 @@
-from flask import Flask, jsonify, request, send_from_directory
-import mysql.connector
+import os
+import psycopg2
+from flask import Flask, jsonify, send_from_directory
 
 app = Flask(__name__)
 
+# Get PostgreSQL connection URL from environment variables
+DATABASE_URL = os.getenv("postgresql://music_recommender_o0zp_user:sVbjARLo55odMpWNWIQZXfIdQyzaETY1@dpg-cvkan8s9c44c738pbmf0-a/music_recommender_o0zp")
+
 def get_db_connection():
-    conn = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="",
-            database="music_recommender"
-    )
+    conn = psycopg2.connect(DATABASE_URL)
     return conn
 
 @app.route('/api/music', methods=['GET'])
 def get_recommendations():
-    recommendations = [
-            {"track": "Song A", "artist": "Artist A"},
-            {"track": "Song B", "artist": "Artist B"},
-            {"track": "Song C", "artist": "Artist C"}
-    ]
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT title, artist FROM Music LIMIT 5;")
+    recommendations = [{"track": row[0], "artist": row[1]} for row in cursor.fetchall()]
+    cursor.close()
+    conn.close()
     return jsonify(recommendations)
 
 @app.route('/')
@@ -26,4 +26,4 @@ def serve_frontend():
     return send_from_directory('static', 'index.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=10000)
