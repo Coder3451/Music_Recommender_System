@@ -1,15 +1,17 @@
 import os
 import psycopg2
-from flask import Flask, jsonify, send_from_directory
+from flask import Flask, jsonify, render_template
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 
 # Get PostgreSQL connection URL from environment variables
-DATABASE_URL = os.getenv("DATABASE_URL")
+DATABASE_URL = os.getenv("DATABASE_URL") 
 
 def get_db_connection():
-    conn = psycopg2.connect(DATABASE_URL)
-    return conn
+    return psycopg2.connect(DATABASE_URL, sslmode="require")
 
 @app.route('/api/music', methods=['GET'])
 def get_recommendations():
@@ -22,8 +24,15 @@ def get_recommendations():
     return jsonify(recommendations)
 
 @app.route('/')
-def serve_frontend():
-    return send_from_directory('static', 'index.html')
+def home():
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT title, artist FROM Music")
+    songs = cur.fetchall()
+    cur.close()
+    conn.close()
+    
+    return render_template("index.html", songs=songs)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=10000)
+    app.run(host='0.0.0.0', port=10000, debug=True)

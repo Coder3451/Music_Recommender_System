@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Recommendations</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Music Recommendations</h1>
+
+        <h2>Database Songs:</h2>
+        <ul id="database-songs">
+            {% for song in songs %}
+                <li>
+                    <a href="#" class="play-song" data-title="{{ song[0] }}" data-artist="{{ song[1] }}">
+                        {{ song[1] }} - {{ song[0] }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h2>API Recommendations:</h2>
+        <ul id="recommendations"></ul>
+
+        <audio id="audio-player" controls style="display: none;"></audio>
+    </div>
+
+    <script>
+        // Fetch recommended songs from API
+        fetch('/api/music')
+            .then(response => response.json())
+            .then(data => {
+                const list = document.getElementById('recommendations');
+                data.forEach(item => {
+                    const li = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.href = "#";
+                    link.textContent = `${item.track} by ${item.artist}`;
+                    link.classList.add("play-song");
+                    link.dataset.title = item.track;
+                    link.dataset.artist = item.artist;
+                    li.appendChild(link);
+                    list.appendChild(li);
+                });
+            });
+
+        // Add event listener to play songs (mock example)
+        document.addEventListener("click", function(event) {
+            if (event.target.classList.contains("play-song")) {
+                event.preventDefault();
+                const title = event.target.dataset.title;
+                const artist = event.target.dataset.artist;
+                const audioPlayer = document.getElementById("audio-player");
+                
+                // MOCK: Replace this with actual music URL if available
+                const songUrl = `/static/music/${title}.mp3`;
+                
+                audioPlayer.src = songUrl;
+                audioPlayer.style.display = "block";
+                audioPlayer.play();
+            }
+        });
+    </script>
+</body>
+</html>
