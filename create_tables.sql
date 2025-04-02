@@ -1,4 +1,3 @@
--- Create Users table
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
     user_name VARCHAR(255) UNIQUE NOT NULL,
@@ -7,7 +6,6 @@ CREATE TABLE users (
     preferred_genre VARCHAR(100) NOT NULL
 );
 
--- Create Music table
 CREATE TABLE music (
     music_id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
@@ -17,7 +15,6 @@ CREATE TABLE music (
     release_year INT NOT NULL
 );
 
--- Create History table
 CREATE TABLE history (
     history_id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
@@ -27,7 +24,6 @@ CREATE TABLE history (
     FOREIGN KEY (music_id) REFERENCES music(music_id)
 );
 
--- Create Preferences table
 CREATE TABLE preferences (
     preference_id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
@@ -35,11 +31,9 @@ CREATE TABLE preferences (
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
--- Insert test data into Users
 INSERT INTO users (user_name, password, preferred_genre) VALUES
 ('testuser', 'testpassword', 'Rock');
 
--- Insert test data into Music
 INSERT INTO music (title, artist, album, genre, release_year) VALUES
 ('Song A', 'Artist A', 'Album A', 'Rock', 2020),
 ('Song B', 'Artist B', 'Album B', 'Pop', 2019),
