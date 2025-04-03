@@ -194,7 +194,7 @@ nav a:hover {
   background: #f39c12;
 }
 
-/* ========== SONG GRID IMPROVEMENTS ========== */
+/* ========== SONG GRID ========== */
 .song-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -281,7 +281,7 @@ nav a:hover {
   border-bottom: 1px solid #eee;
 }
 
-/* ========== HISTORY SECTION IMPROVEMENTS ========== */
+/* ========== HISTORY SECTION ========== */
 .history-container {
   padding: 2rem;
   background: #fff;

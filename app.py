@@ -6,21 +6,20 @@ from dotenv import load_dotenv
 from urllib.parse import quote 
 from datetime import datetime
 
-os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
-os.environ['OAUTHLIB_RELAX_TOKEN_SCOPE'] = '1'  
-
+# Load environment variables from .env file
 load_dotenv()
 
+# Initialize Flask app
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET_KEY")
 
-# Add these session configurations
+# Session configurations to improve security
 app.config.update(
     SESSION_COOKIE_NAME='vibetune_session',
-    SESSION_COOKIE_HTTPONLY=True,
-    SESSION_COOKIE_SECURE=False,  # Set to True in production
-    SESSION_COOKIE_SAMESITE='Lax',
-    PERMANENT_SESSION_LIFETIME=3600  # 1 hour
+    SESSION_COOKIE_HTTPONLY=True,  # Prevent JavaScript from accessing cookies
+    SESSION_COOKIE_SECURE=False,  # Set to True in production (requires HTTPS)
+    SESSION_COOKIE_SAMESITE='Lax',  # Helps prevent CSRF attacks
+    PERMANENT_SESSION_LIFETIME=3600  # Session lasts 1 hour
 )
 
 google_bp = make_google_blueprint(
@@ -364,9 +363,11 @@ def about():
 
 @app.route('/logout')
 def logout():
+    """Logs the user out by clearing session data."""
     session.clear()
     flash("You have been logged out")
     return redirect(url_for('home'))
 
 if __name__ == '__main__':
+    # Running the app on port 10000, debug mode should be off in production
     app.run(host='0.0.0.0', port=10000, debug=True)

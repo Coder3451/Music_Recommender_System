@@ -2,112 +2,113 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body, html {
+    box-sizing: border-box; /* Keeps everything within its container */
+}
+
+body, html {
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #f4f4f4; /* Light gray background for a clean look */
+    color: #333; /* Darker text for better readability */
     text-align: center;
-  }
-  
-  /* ========== HEADER ========== */
-  header {
+}
+
+/* ========== HEADER ========== */
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background: #232a35;
+    background: #232a35; /* Dark header for contrast */
     color: #fff;
-  }
-  
-  nav {
+}
+
+nav {
     background: #2c3e50;
     padding: 10px;
-  }
-  
-  nav a {
+}
+
+nav a {
     color: white;
     text-decoration: none;
     margin: 0 15px;
     padding: 5px;
-  }
-  
-  nav a.active {
-    background-color: #f39c12;
+}
+
+nav a.active {
+    background-color: #f39c12; /* Highlights the current page */
     color: white;
-  }
-  
-  nav a:hover {
+}
+
+nav a:hover {
     color: #f4f4f4;
-    background: #e67e22;
-  }
+    background: #e67e22; /* Slightly darker orange on hover */
+}
+
 /* ========== PREFERENCES SECTION ========== */
 .preferences-container {
     max-width: 800px;
     margin: 30px auto;
     padding: 40px;
     background: white;
-    border-radius: 12px;
+    border-radius: 12px; /* Soft edges for a modern feel */
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  }
-  
-  .preferences-form {
+}
+
+.preferences-form {
     max-width: 500px;
     margin: 2rem auto;
-  }
-  
-  .form-group {
+}
+
+.form-group {
     margin-bottom: 1.5rem;
     text-align: left;
-  }
-  
-  .form-group label {
+}
+
+.form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: #2c3e50;
+    color: #2c3e50; /* Darker text for contrast */
     font-weight: 500;
-  }
-  
-  .form-group select {
+}
+
+.form-group select {
     width: 100%;
     padding: 12px;
-    border: 2px solid #e0e0e0;
+    border: 2px solid #e0e0e0; /* Light gray border */
     border-radius: 8px;
     font-size: 1rem;
     background: #fff;
-    transition: all 0.3s ease;
-  }
-  
-  .form-group select:focus {
+    transition: all 0.3s ease; /* Smooth transition effect */
+}
+
+.form-group select:focus {
     border-color: #f39c12;
     outline: none;
-    box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.2);
-  }
-  
-  .btn-save {
+    box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.2); /* Adds focus effect */
+}
+
+.btn-save {
     background: #f39c12 !important;
     color: white !important;
     padding: 12px 30px;
     border-radius: 25px;
     font-weight: 600;
     transition: all 0.3s ease;
-  }
-  
-  .btn-save:hover {
+}
+
+.btn-save:hover {
     background: #e67e22 !important;
-    transform: translateY(-2px);
-  }
-  
-  /* ========== ABOUT SECTION ========== */
-  .about-container {
+    transform: translateY(-2px); /* Slight bounce effect on hover */
+}
+
+/* ========== ABOUT SECTION ========== */
+.about-container {
     max-width: 1000px;
     margin: 0 auto;
     padding: 2rem;
-  }
-  
-  .bio-card {
+}
+
+.bio-card {
     display: flex;
     gap: 2rem;
     align-items: center;
@@ -116,69 +117,69 @@
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     margin: 2rem 0;
-  }
-  
-  .bio-content {
+}
+
+.bio-content {
     text-align: left;
     flex: 1;
-  }
-  
-  .bio-content h3 {
+}
+
+.bio-content h3 {
     color: #2c3e50;
     font-size: 1.8rem;
     margin-bottom: 1rem;
-  }
-  
-  .subtitle {
+}
+
+.subtitle {
     color: #7f8c8d;
     font-size: 1.2rem;
     margin-bottom: 2rem;
-  }
-  
-  .tagline {
+}
+
+.tagline {
     color: #f39c12;
     font-weight: 600;
     font-size: 1.4rem;
     margin: 1.5rem 0;
-  }
-  
-  .social-links {
+}
+
+.social-links {
     margin-top: 2rem;
     padding: 2rem;
     background: #f9f9f9;
     border-radius: 12px;
-  }
-  
-  .social-icons {
+}
+
+.social-icons {
     display: flex;
     gap: 1rem;
     justify-content: center;
     margin-top: 1rem;
-  }
-  
-  .social-icon {
+}
+
+.social-icon {
     padding: 10px 25px;
     border-radius: 25px;
     background: #f39c12;
     color: white !important;
     text-decoration: none;
     transition: all 0.3s ease;
-  }
-  
-  .social-icon:hover {
+}
+
+.social-icon:hover {
     background: #e67e22;
     transform: translateY(-2px);
-  }
-  
-  /* ========== FLASH MESSAGES ========== */
-  .flash-messages {
+}
+
+/* ========== FLASH MESSAGES ========== */
+.flash-messages {
     margin: 1rem 0;
-  }
-  
-  .flash-message {
+}
+
+.flash-message {
     padding: 1rem;
     margin: 1rem 0;
     border-radius: 8px;
-    background: #f39c12;
+    background: #f39c12; /* Orange for visibility */
     color: white;
-  }
+}
