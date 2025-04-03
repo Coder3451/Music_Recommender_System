@@ -1,3 +1,4 @@
+-- Tables for core user data and authentication
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
     user_name VARCHAR(255) UNIQUE NOT NULL,
@@ -6,6 +7,7 @@ CREATE TABLE users (
     preferred_genre VARCHAR(100) NOT NULL
 );
 
+-- Catalog of available music tracks
 CREATE TABLE music (
     music_id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
@@ -16,6 +18,7 @@ CREATE TABLE music (
     release_year INT NOT NULL
 );
 
+-- User listening activity tracking
 CREATE TABLE history (
     history_id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
@@ -25,6 +28,7 @@ CREATE TABLE history (
     FOREIGN KEY (music_id) REFERENCES music(music_id)
 );
 
+-- User genre preferences (expandable system)
 CREATE TABLE preferences (
     preference_id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
@@ -32,14 +36,15 @@ CREATE TABLE preferences (
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
+-- Optimize frequent lookup operations
 CREATE INDEX idx_history_user ON history(user_id);
 CREATE INDEX idx_music_genre ON music(genre);
 
--- Insert test user
+-- Demo user for testing purposes
 INSERT INTO users (user_name, password, preferred_genre) VALUES
 ('testuser', 'testpassword', 'Rock');
 
--- Insert 50 songs
+-- Initial music catalog (sample entries)
 INSERT INTO music (title, artist, album, genre, release_year) VALUES
 ('Bohemian Rhapsody', 'Queen', 'A Night at the Opera', 'Rock', 1975),
 ('Sweet Child O''Mine', 'Guns N'' Roses', 'Appetite for Destruction', 'Rock', 1987),

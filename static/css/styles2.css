@@ -2,12 +2,12 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Keeps everything within its container */
+    box-sizing: border-box; /* Ensures padding/borders don't affect element size */
 }
 
 body, html {
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-color: #f4f4f4; /* Light gray background for a clean look */
+    background-color: #f4f4f4; /* Light gray background for a clean UI */
     color: #333; /* Darker text for better readability */
     text-align: center;
 }
@@ -22,6 +22,7 @@ header {
     color: #fff;
 }
 
+/* Navigation Bar */
 nav {
     background: #2c3e50;
     padding: 10px;
@@ -35,7 +36,7 @@ nav a {
 }
 
 nav a.active {
-    background-color: #f39c12; /* Highlights the current page */
+    background-color: #f39c12; /* Highlight current page */
     color: white;
 }
 
@@ -50,8 +51,8 @@ nav a:hover {
     margin: 30px auto;
     padding: 40px;
     background: white;
-    border-radius: 12px; /* Soft edges for a modern feel */
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    border-radius: 12px; /* Soft rounded edges */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .preferences-form {
@@ -67,7 +68,7 @@ nav a:hover {
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: #2c3e50; /* Darker text for contrast */
+    color: #2c3e50; /* Dark text for contrast */
     font-weight: 500;
 }
 
@@ -78,15 +79,16 @@ nav a:hover {
     border-radius: 8px;
     font-size: 1rem;
     background: #fff;
-    transition: all 0.3s ease; /* Smooth transition effect */
+    transition: all 0.3s ease; /* Smooth transition */
 }
 
 .form-group select:focus {
     border-color: #f39c12;
     outline: none;
-    box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.2); /* Adds focus effect */
+    box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.2); /* Highlight effect */
 }
 
+/* Save Button */
 .btn-save {
     background: #f39c12 !important;
     color: white !important;
@@ -98,7 +100,7 @@ nav a:hover {
 
 .btn-save:hover {
     background: #e67e22 !important;
-    transform: translateY(-2px); /* Slight bounce effect on hover */
+    transform: translateY(-2px); /* Slight bounce effect */
 }
 
 /* ========== ABOUT SECTION ========== */
@@ -115,7 +117,7 @@ nav a:hover {
     background: white;
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     margin: 2rem 0;
 }
 
@@ -143,6 +145,7 @@ nav a:hover {
     margin: 1.5rem 0;
 }
 
+/* Social Links */
 .social-links {
     margin-top: 2rem;
     padding: 2rem;

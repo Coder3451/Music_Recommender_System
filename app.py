@@ -23,16 +23,17 @@ app.secret_key = os.getenv("FLASK_SECRET_KEY")
 app.config.update(
     SESSION_COOKIE_NAME='vibetune_session',
     SESSION_COOKIE_HTTPONLY=True,  # Prevent JavaScript from accessing cookies
-    SESSION_COOKIE_SECURE=False,     # Set to True in production (requires HTTPS)
+    SESSION_COOKIE_SECURE=True,     # Set to True in production (requires HTTPS)
     SESSION_COOKIE_SAMESITE='Lax',   # Helps prevent CSRF attacks
-    PERMANENT_SESSION_LIFETIME=3600  # Session lasts 1 hour
+    PERMANENT_SESSION_LIFETIME=3600,  # Session lasts 1 hour
+    PREFERRED_URL_SCHEME='https'
 )
 
 # Setting up Google login
 google_bp = make_google_blueprint(
     client_id=os.getenv("GOOGLE_CLIENT_ID"),
     client_secret=os.getenv("GOOGLE_CLIENT_SECRET"),
-    redirect_url='http://localhost:10000/google_login/authorized',
+    redirect_url='https://vibetune-musics.onrender.com/google_login/authorized',
     scope=[
         "openid",
         "https://www.googleapis.com/auth/userinfo.email",

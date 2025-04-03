@@ -53,11 +53,11 @@ To deploy on Render:
 4. Deploy and access the live app.
 
 ### Screenshots
-![Home Page](home-screenshot.png)
-![Landing Page](landing-screenshot.png)
-![Preferences Page](preferences-screenshot.png)
-![History Page](history-screenshot.png)
-![About Page](about-screenshot.png)
+![Home Page](static/images/home-screenshot.png)
+![Landing Page](static/images/landing-screenshot.png)
+![Preferences Page](static/images/preferences-screenshot.png)
+![History Page](static/images/history-screenshot.png)
+![About Page](static/images/about-screenshot.png)
 
 # Common Errors I Did
 - Forgot to `source venv` -> ModuleNotFound errors

@@ -1,3 +1,4 @@
+/* Set body font, background, and center content */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
@@ -8,6 +9,7 @@ body {
     margin: 0;
 }
 
+/* Center login container */
 .login-container {
     width: 100%;
     display: flex;
@@ -15,6 +17,7 @@ body {
     align-items: center;
 }
 
+/* Login box styles */
 .login-box {
     background-color: #ffffff;
     padding: 40px;
@@ -24,12 +27,14 @@ body {
     text-align: center;
 }
 
+/* Heading style */
 .login-box h2 {
     margin-bottom: 20px;
     font-size: 26px;
     color: #333333;
 }
 
+/* Label styles */
 .login-box label {
     display: block;
     margin: 15px 0 5px;
@@ -37,6 +42,7 @@ body {
     color: #555555;
 }
 
+/* Input field styles */
 .login-box input {
     width: 100%;
     padding: 10px;
@@ -46,6 +52,7 @@ body {
     font-size: 16px;
 }
 
+/* Login button styles */
 .login-box button {
     width: 100%;
     padding: 10px;
@@ -57,10 +64,12 @@ body {
     cursor: pointer;
 }
 
+/* Login button hover effect */
 .login-box button:hover {
     background-color: #e67e22;
 }
 
+/* Google login button styles */
 .google-btn {
     display: block;
     width: 100%;
@@ -73,10 +82,12 @@ body {
     margin-top: 10px;
 }
 
+/* Google button hover effect */
 .google-btn:hover {
     background-color: #232a35;
 }
 
+/* Error message styles */
 .error-message {
     color: #e67e22;
     font-size: 14px;
