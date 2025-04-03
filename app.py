@@ -4,7 +4,6 @@ Created by: Segni Woldemichael
 Date: 04-03-2025
 """
 
-# These are the modules we need to make the app work
 import os
 import psycopg
 from flask import Flask, render_template, redirect, request, session, url_for, flash
@@ -24,8 +23,8 @@ app.secret_key = os.getenv("FLASK_SECRET_KEY")
 app.config.update(
     SESSION_COOKIE_NAME='vibetune_session',
     SESSION_COOKIE_HTTPONLY=True,  # Prevent JavaScript from accessing cookies
-    SESSION_COOKIE_SECURE=False,  # Set to True in production (requires HTTPS)
-    SESSION_COOKIE_SAMESITE='Lax',  # Helps prevent CSRF attacks
+    SESSION_COOKIE_SECURE=False,     # Set to True in production (requires HTTPS)
+    SESSION_COOKIE_SAMESITE='Lax',   # Helps prevent CSRF attacks
     PERMANENT_SESSION_LIFETIME=3600  # Session lasts 1 hour
 )
 
@@ -142,13 +141,11 @@ def signup():
             session['user_id'] = new_user_id
             return redirect(url_for('dashboard'))
 
-        except psycopg2.errors.UniqueViolation:
-            conn.rollback()
-            flash("Email already exists. Please login instead.", "error")
-            return redirect(url_for('login'))
         except Exception as e:
-            print(f"Signup error: {e}")
+            if conn:
+                conn.rollback()
             flash("Registration failed. Please try again.", "error")
+            print(f"Signup error: {e}")
             return redirect(url_for('signup'))
         finally:
             if cursor:
@@ -201,7 +198,7 @@ def google_login_authorized():
             user_id = cursor.fetchone()[0]
             conn.commit()
 
-            session.permanent = True  # Add this line
+            session.permanent = True
             session['user_id'] = user_id
             session['user_name'] = name
         else:
@@ -225,7 +222,6 @@ def make_session_permanent():
 
 @app.route('/play/<int:music_id>')
 def play_song(music_id):
-    # Check if user is logged in
     if 'user_id' not in session:
         flash("Please login to play songs", "error")
         return redirect(url_for('login'))
@@ -233,8 +229,6 @@ def play_song(music_id):
     try:
         conn = get_db_connection()
         cursor = conn.cursor()
-        
-        # Get song details
         cursor.execute("""
             SELECT title, artist, youtube_link 
             FROM music 
@@ -255,11 +249,9 @@ def play_song(music_id):
         """, (session['user_id'], music_id))
         conn.commit()
         
-        # Use direct YouTube link if available
         if youtube_link:
             return redirect(youtube_link)
         
-        # Fallback to search
         search_query = f"{title} {artist} official audio"
         return redirect(f"https://www.youtube.com/results?search_query={quote(search_query)}")
         
@@ -268,8 +260,10 @@ def play_song(music_id):
         flash("Error playing song", "error")
         return redirect(url_for('dashboard'))
     finally:
-        if 'cursor' in locals(): cursor.close()
-        if 'conn' in locals(): conn.close()
+        if 'cursor' in locals(): 
+            cursor.close()
+        if 'conn' in locals(): 
+            conn.close()
 
 @app.route('/history')
 def history():
@@ -279,7 +273,6 @@ def history():
     conn = get_db_connection()
     try:
         cursor = conn.cursor()
-        # Get music_id from history table
         cursor.execute("""
             SELECT m.music_id, m.title, m.artist, h.played_at 
             FROM history h
@@ -288,13 +281,9 @@ def history():
             ORDER BY h.played_at DESC
             LIMIT 20
         """, (session['user_id'],))
-        
-        # Convert to dictionaries with proper keys
         columns = ['music_id', 'title', 'artist', 'played_at']
         history_items = [dict(zip(columns, row)) for row in cursor.fetchall()]
-        
         return render_template('history_page.html', history=history_items)
-    
     except Exception as e:
         print(f"History error: {e}")
         flash("Error loading history", "error")
@@ -313,36 +302,21 @@ def preferences():
         conn = get_db_connection()
         cursor = conn.cursor()
 
-        # Get available genres
         cursor.execute("SELECT DISTINCT genre FROM music")
         available_genres = [row[0] for row in cursor.fetchall()]
 
-        # Get current preference
         cursor.execute("SELECT preferred_genre FROM users WHERE user_id = %s", (session['user_id'],))
         current_genre = cursor.fetchone()[0]
 
         if request.method == 'POST':
             genre = request.form.get('genre')
-            
-            # Update user preference
-            cursor.execute(
-                "UPDATE users SET preferred_genre = %s WHERE user_id = %s",
-                (genre, session['user_id'])
-            )
-            
-            # Log preference change
-            cursor.execute(
-                "INSERT INTO preferences (user_id, preferred_genre) VALUES (%s, %s)",
-                (session['user_id'], genre)
-            )
-            
+            cursor.execute("UPDATE users SET preferred_genre = %s WHERE user_id = %s", (genre, session['user_id']))
+            cursor.execute("INSERT INTO preferences (user_id, preferred_genre) VALUES (%s, %s)", (session['user_id'], genre))
             conn.commit()
             flash("Preferences updated successfully!", "success")
             return redirect(url_for('preferences'))
 
-        return render_template('preferences_page.html', 
-                            available_genres=available_genres,
-                            current_genre=current_genre)
+        return render_template('preferences_page.html', available_genres=available_genres, current_genre=current_genre)
 
     except Exception as e:
         if conn:
@@ -371,11 +345,9 @@ def about():
 
 @app.route('/logout')
 def logout():
-    """Logs the user out by clearing session data."""
     session.clear()
     flash("You have been logged out")
     return redirect(url_for('home'))
 
 if __name__ == '__main__':
-    # Running the app on port 10000, debug mode should be off in production
     app.run(host='0.0.0.0', port=10000, debug=True)
