@@ -5,3 +5,5 @@ python-dotenv==0.19.0
 requests==2.26.0
 bcrypt==3.2.0
 gunicorn
+Werkzeug==2.2.2
+
