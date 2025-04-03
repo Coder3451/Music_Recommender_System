@@ -16,7 +16,7 @@ VibeTune Musics is a Flask-based music recommendation system that provides users
 - **Database:** PostgreSQL
 - **Authentication:** Google OAuth 2.0
 
-## Setup Instructions
+## Installation Steps
 ### 1. Clone the repository:
 ```bash
 git clone https://github.com/yourusername/vibetune.git
@@ -52,14 +52,34 @@ To deploy on Render:
 3. Add environment variables in the Render dashboard.
 4. Deploy and access the live app.
 
-## Challenges & Future Improvements
-- **Enhancing recommendation accuracy**: Exploring collaborative filtering.
-- **Improving UI/UX**: Implementing a modern design.
-- **Adding music streaming support**: Integrating external APIs.
+### Screenshots
+![Home Page](home-screenshot.png)
+![Landing Page](landing-screenshot.png)
+![Preferences Page](preferences-screenshot.png)
+![History Page](history-screenshot.png)
+![About Page](about-screenshot.png)
 
-## Contributions
+# Common Errors I Did
+- Forgot to `source venv` -> ModuleNotFound errors
+- Wrong database URL format -> connection failures
+- Google OAuth redirect URLs not matching -> login loops
+- Forgetting to commit() after SQL changes -> lost data
+
+## Future Ideas (If I Have Time)
+- [ ] Better recommendations (using machine learning)
+- [ ] Let users make playlists
+- [ ] Add actual music playback
+- [ ] Rating system for songs
+
+## Contributions## How to Contribute
+I'm new to open source! If you want to help:
+1. Fork the repo
+2. Make changes in a new branch
+3. Send a pull request
 Feel free to fork, improve, and submit pull requests.
+
+## License
+ALX SE Student
 
 ---
 Happy Coding! 🎵
-

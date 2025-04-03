@@ -1,5 +1,12 @@
+"""
+Main application file for VibeTune Music App
+Created by: Segni Woldemichael
+Date: 04-03-2025
+"""
+
+# These are the modules we need to make the app work
 import os
-import psycopg2
+import psycopg
 from flask import Flask, render_template, redirect, request, session, url_for, flash
 from flask_dance.contrib.google import make_google_blueprint, google
 from dotenv import load_dotenv
@@ -9,7 +16,7 @@ from datetime import datetime
 # Load environment variables from .env file
 load_dotenv()
 
-# Initialize Flask app
+# Start our Flask app
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET_KEY")
 
@@ -22,6 +29,7 @@ app.config.update(
     PERMANENT_SESSION_LIFETIME=3600  # Session lasts 1 hour
 )
 
+# Setting up Google login
 google_bp = make_google_blueprint(
     client_id=os.getenv("GOOGLE_CLIENT_ID"),
     client_secret=os.getenv("GOOGLE_CLIENT_SECRET"),
@@ -38,7 +46,7 @@ app.register_blueprint(google_bp, url_prefix="/google_login")
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 def get_db_connection():
-    return psycopg2.connect(DATABASE_URL, sslmode="require")
+    return psycopg.connect(DATABASE_URL, sslmode="require")
 
 def log_history(user_id, music_id):
     try:
