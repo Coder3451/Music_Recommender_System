@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeTune Musics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="VibeTune Logo" height="50">
+          </div>
+          <nav>
+            <a href="/dashboard" class="nav-link active">Home</a>
+            <a href="/preferences" class="nav-link">Preferences</a>
+            <a href="/history" class="nav-link">History</a>
+            <a href="/about" class="nav-link">About</a>
+            <a href="/logout" class="nav-link">Logout</a>
+        </nav>
+    </header>
+
+    <section class="content recommended-songs">
+        <div class="container">
+            <h1>Welcome to VibeTune Musics</h1>
+            <h2 class="section-title">Recommended For You</h2>
+            <div class="song-grid">
+                {% for song in songs %}
+                <div class="song-card">
+                    <div class="card-content">
+                        <h3 class="song-title">{{ song[1] }}</h3>
+                        <div class="song-details">
+                            <p class="artist"><span class="label">Artist:</span> {{ song[2] }}</p>
+                            <p class="album"><span class="label">Album:</span> {{ song[3] }}</p>
+                        </div>
+                        <a href="{{ url_for('play_song', music_id=song[0]) }}" class="btn btn-orange play-button">
+                            <span class="play-icon">▶</span> Play Now
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 VibeTune Musics. All rights reserved.</p>
+    </footer>
+</body>
+</html>

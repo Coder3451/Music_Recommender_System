@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VibeTune Musics</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="VibeTune Logo" height="50">
+    </div>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>VibeTune <span class="highlight">Musics</span></h1>
+    <p>Your Personalized Music Journey</p>
+    <div class="buttons">
+      <a href="{{ url_for('showcase') }}" class="btn black">Try the App</a>
+      <a href="{{ url_for('login') }}" class="btn orange">Log In</a>
+    </div>
+  </section>
+
+  <section id="features">
+    <h2>Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <img src="{{ url_for('static', filename='images/feature1.png') }}" alt="Recommendation algorithm visualization">
+        <h3>Personalized Recommendations</h3>
+        <p>Our system analyzes your listening history to deliver customized song recommendations tailored just for you.</p>
+      </div>
+      <div class="feature-card">
+        <img src="{{ url_for('static', filename='images/feature2.png') }}" alt="UI interface screenshot">
+        <h3>Intuitive User Interface</h3>
+        <p>Enjoy a sleek and responsive design that makes discovering music a breeze.</p>
+      </div>
+      <div class="feature-card">
+        <img src="{{ url_for('static', filename='images/feature3.png') }}" alt="Real-time updates diagram">
+        <h3>Real-Time Data Updates</h3>
+        <p>Experience up-to-date recommendations as the system continuously processes your music preferences.</p>
+      </div>
+    </div>
+  </section>
+  <section id="video-demo">
+    <h2>Project Demo</h2>
+    <p>Watch our walkthrough of VibeTune Musics.</p>
+    <video width="560" height="315" controls>
+        <source src="static/video/Video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</section>
+
+
+  <section id="about">
+    <h2>About</h2>
+    <p>
+      As music enthusiasts, we wanted to create a platform that helps listeners discover their next favorite song. 
+      This project was developed during our time at <a href="https://www.alxafrica.com/" target="_blank">ALX Africa</a> 
+      as part of the portfolio project requirement, combining our passion for music with technical learning.
+    </p>
+    
+    <h3>Development Team</h3>
+    <div class="team-member">
+      <p><strong>Segni Woldemichael</strong> - Full Stack Developer</p>
+      <div class="social-links">
+        <a href="https://github.com/Coder3451" target="_blank">GitHub</a> |
+        <a href="https://www.linkedin.com/in/segnijabesa" target="_blank">LinkedIn</a> |
+        <a href="https://x.com/SegniWolde54633" target="_blank">Twitter</a>
+      </div>
+    </div>
+
+    <h3>Project Repository</h3>
+    <p>
+      <a href="https://github.com/Coder3451/Music_Recommender_System.git" target="_blank">
+        View Source Code on GitHub
+      </a>
+    </p>
+  </section>
+</body>
+</html>

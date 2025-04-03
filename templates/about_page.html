@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - VibeTune Musics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles2.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="VibeTune Logo" height="50">
+        </div>
+        <nav>
+            <a href="/dashboard" class="nav-link">Home</a>
+            <a href="/preferences" class="nav-link">Preferences</a>
+            <a href="/history" class="nav-link">History</a>
+            <a href="/about" class="nav-link active">About</a>
+            <a href="/logout" class="nav-link">Logout</a>
+        </nav>
+    </header>
+
+    <section class="content">
+        <div class="about-container">
+            <h2>About VibeTune Musics</h2>
+            <p class="subtitle">Meet the mind behind the music</p>
+            
+            <div class="bio-card">
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="VibeTune Logo" height="50">
+                </div>
+                <div class="bio-content">
+                    <h3>Hey there! We are ALX SE students #DOHARDTHINGS</h3>
+                    <p>
+                        As music enthusiasts, we wanted to create a platform that helps listeners discover their next favorite song. 
+                        This project was developed during our time at <a href="https://www.alxafrica.com/" target="_blank">ALX Africa</a> 
+                        as part of the portfolio project requirement, combining our passion for music with technical learning.
+                    </p>                    <p class="tagline">Explore. Listen. Repeat.</p>
+                </div>
+            </div>
+            
+            <div class="social-links">
+                <p>Connect with me:</p>
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/segnijabesa" target="_blank" class="social-icon">LinkedIn</a>
+                    <a href="https://x.com/SegniWolde54633" target="_blank" class="social-icon">Twitter</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 VibeTune Musics. All rights reserved.</p>
+        <a href="/logout" class="footer-link">Logout</a>
+    </footer>
+</body>
+</html>

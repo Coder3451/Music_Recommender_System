@@ -1,1 +1,0 @@
-// Placeholder JavaScript code

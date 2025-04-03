@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History - VibeTune Musics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="VibeTune Logo" height="50">
+          </div>
+          <nav>
+            <a href="/dashboard" class="nav-link">Home</a>
+            <a href="/preferences" class="nav-link">Preferences</a>
+            <a href="/history" class="nav-link active">History</a>
+            <a href="/about" class="nav-link">About</a>
+            <a href="/logout" class="nav-link">Logout</a>
+        </nav>
+    </header>
+
+    <section class="content">
+        <div class="container">
+            <div class="history-container">
+                <h2 class="section-title">Your Listening History</h2>
+                
+                {% if history %}
+                <div class="history-grid">
+                    {% for item in history %}
+                    <div class="history-card">
+                        <div class="card-content">
+                            <div class="song-info">
+                                <h3 class="song-title">{{ item['title'] }}</h3>
+                                <p class="artist"><span class="label">Artist:</span> {{ item['artist'] }}</p>
+                                <div class="metadata">
+                                    <span class="timestamp">
+                                        <i class="fas fa-clock"></i>
+                                        {{ item['played_at'].strftime('%b %d, %Y %I:%M %p') }}
+                                    </span>
+                                </div>
+                            </div>
+                            <a href="{{ url_for('play_song', music_id=item['music_id']) }}" 
+                               class="btn btn-orange play-button">
+                                <i class="fas fa-redo-alt"></i> Play Again
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="empty-state">
+                    <i class="fas fa-history empty-icon"></i>
+                    <p class="empty-message">No history yet. Start playing some music!</p>
+                    <a href="/dashboard" class="btn btn-black">Explore Songs</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 VibeTune Musics. All rights reserved.</p>
+        <a href="/about" class="footer-link">About</a>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>

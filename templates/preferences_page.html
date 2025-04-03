@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preferences - VibeTune Musics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles2.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="VibeTune Logo" height="50">
+          </div>
+        <nav>
+            <a href="/dashboard" class="nav-link">Home</a>
+            <a href="/preferences" class="nav-link active">Preferences</a>
+            <a href="/history" class="nav-link">History</a>
+            <a href="/about" class="nav-link">About</a>
+            <a href="/logout" class="nav-link">Logout</a>
+        </nav>
+    </header>
+
+    <section class="content">
+        <div class="preferences-container">
+            <h2>Your Music Preferences</h2>
+            
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                    <div class="flash-message">{{ message }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            {% endwith %}
+            
+            <form method="POST" class="preferences-form">
+                <div class="form-group">
+                    <label for="genre">Preferred Genre:</label>
+                    <select id="genre" name="genre" required>
+                        {% for genre in available_genres %}
+                        <option value="{{ genre }}" {% if current_genre == genre %}selected{% endif %}>{{ genre }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn-save">Save Preferences</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 VibeTune Musics. All rights reserved.</p>
+        <a href="/about" class="footer-link">About</a>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
